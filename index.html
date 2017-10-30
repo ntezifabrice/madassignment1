@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+        .head {
+            height: 12%;
+            z-index: 1;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #00F;
+            overflow-x: hidden;
+            text-align: center;
+        }
+        .left_side {
+            height: 88%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 12%;
+            left: 0;
+            background-color: #0F0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .left_side a {
+            padding: 6px 6px 6px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #000;
+            display: block;
+        }
+
+        .left_side a:hover {
+            color: #FFF;
+        }
+
+        .main {
+            margin-left: 200px; /* Same as the width of the sidenav */
+            padding-top: 80px; /* Same as the width of the sidenav */
+            padding-left: 20px; /* Same as the width of the sidenav */
+        }
+    </style>
+    <script src="jquery.js"></script>
+</head>
+<body>
+<div class="head">
+    <h1>Mobile App Development</h1>
+</div>
+<div class="left_side">
+    <a class="menu" id="home" onclick="left_menu(this.id)" href="#">Home</a>
+    <a class="menu" id="about_us" onclick="left_menu(this.id)" href="#">About us</a>
+    <a class="menu" id="email_us" onclick="left_menu(this.id)" href="#">Email us</a>
+    <a class="menu" id="click_me" onclick="left_menu(this.id)" href="#">Click me</a>
+</div>
+
+<div class="main">
+    <h1>Welcome</h1>
+    <hr>
+    <p id="main_text">Choose a menu from left side to start.</p>
+    <table align="center" width="40%" border="1" cellpadding="0" cellspacing="0">
+        <tr><td colspan="5"><center><b style="font-size: large">Click Statistics</b></center></td></tr>
+        <tr><td></td><td>Home</td><td>About us</td><td>Email us</td><td>Click me</td></tr>
+        <tr id="menu_clicks"><td># Clicks</td><td id="home_click">0</td><td id="about_us_click">0</td><td id="email_us_click">0</td><td id="click_me_click">0</td></tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+    function left_menu(menu_id) {
+        var clicked=$('#'+menu_id);
+        $('.menu').css('background','#0F0');
+        $('#main_text').html('You recently Clicked "<b>'+clicked.text()+'</b>" menu.');
+        clicked.css('background','#F00');
+        click_count(menu_id);
+        alert('"'+clicked.text() +'" was clicked');
+    }
+    function click_count(menu_id) {
+        var clicked_row=$('#'+menu_id+'_click');
+        var last_value=parseInt(clicked_row.text());
+            $('#menu_clicks *').css('background', '#FFF');
+            clicked_row.css('background', '#0F0');
+            clicked_row.text(++last_value);
+    }
+</script>
+</body>
+</html>
